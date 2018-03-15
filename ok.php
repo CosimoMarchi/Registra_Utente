@@ -9,11 +9,10 @@
   
   try 
   {
-  $dbh = new PDO('mysql:host=localhost;dbname=Registrazione', "root", "");
+  $dbh = new PDO('mysql:host=localhost;dbname=Registrazione', "root", "root");
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  sleep(5);
   $stmt = $dbh->prepare('
-      INSERT INTO Registra (Nome, Cognome, Sesso, Nazione, Patente, Email, Password)
+      INSERT INTO Utenti (nome, cognome, sesso, nazionalita, patente, email, password)
       VALUES (:nome, :cognome, :radio, :select, :patente, :email, :password);');
   $stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
   $stmt->bindValue(':cognome', $cognome, PDO::PARAM_STR);
@@ -23,7 +22,7 @@
   $stmt->bindValue(':email', $email, PDO::PARAM_STR);
   $stmt->bindValue(':password', $password, PDO::PARAM_STR);
   $stmt->execute();
-  } catch (PDOException $e) 
+  } catch (PDOException $e)
   {
       print "Error!: " . $e->getMessage() . "<br/>";
       die();
