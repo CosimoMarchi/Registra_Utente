@@ -3,22 +3,24 @@
   $cognome = $_GET["cognome"];
   $radio = $_GET["radio"];
   $select = $_GET["select"];
-  $patente=$_GET["patente"];
+  $data=$_GET["data"];
   $email = $_GET["email"];
   $password = $_GET["password"];
-  
+  $username = $_GET["username"];
   try 
   {
-  $dbh = new PDO('mysql:host=localhost;dbname=Registrazione', "root", "root");
+  $dbh = new PDO('mysql:host=localhost;dbname=marchee', "root", "root");
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $stmt = $dbh->prepare('
-      INSERT INTO Utenti (nome, cognome, sesso, nazionalita, patente, email, password)
-      VALUES (:nome, :cognome, :radio, :select, :patente, :email, :password);');
+      INSERT INTO Passeggero (nome, cognome, sesso, nazionalita, username, telefono, dataNascita, email, password)
+      VALUES (:nome, :cognome, :radio, :select, :username, :data, :telefono, :email, :password);');
   $stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
   $stmt->bindValue(':cognome', $cognome, PDO::PARAM_STR);
   $stmt->bindValue(':radio', $radio, PDO::PARAM_INT);
   $stmt->bindValue(':select', $cognome, PDO::PARAM_STR);
-  $stmt->bindValue(':patente', $patente, PDO::PARAM_INT);
+  $stmt->bindValue(':username', $username, PDO::PARAM_INT);
+  $stmt->bindValue(':telefono', $data, PDO::PARAM_INT);
+  $stmt->bindValue(':data', $data, PDO::PARAM_INT);
   $stmt->bindValue(':email', $email, PDO::PARAM_STR);
   $stmt->bindValue(':password', $password, PDO::PARAM_STR);
   $stmt->execute();
