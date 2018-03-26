@@ -7,14 +7,16 @@
   $email = $_GET["email"];
   $password = $_GET["password"];
   $username = $_GET["username"];
+  $patente = $_GET["patente"];
+  $Spatente = $_GET["Spatente"];
   $telefono = $_GET["telefono"];
   try 
   {
   $dbh = new PDO('mysql:host=localhost;dbname=marchee', "root", "root");
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $stmt = $dbh->prepare('
-      INSERT INTO Passeggero (nome, cognome, sesso, nazionalita, username, telefono, dataNascita, email, password)
-      VALUES (:nome, :cognome, :radio, :select, :username, :data, :telefono, :email, :password);');
+      INSERT INTO Autista (nome, cognome, sesso, nazionalita, username, telefono, dataNascita, email, password, numeroPatente, scadenzaPatente)
+      VALUES (:nome, :cognome, :radio, :select, :username, :data, :telefono, :email, :password, :numeroPatente, :scadenzaPatente);');
   $stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
   $stmt->bindValue(':cognome', $cognome, PDO::PARAM_STR);
   $stmt->bindValue(':radio', $radio, PDO::PARAM_INT);
@@ -23,7 +25,9 @@
   $stmt->bindValue(':telefono', $telefono, PDO::PARAM_INT);
   $stmt->bindValue(':data', $data, PDO::PARAM_INT);
   $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-  $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+  $stmt->bindValue(':password', $password, PDO::PARAM_STR); 
+  $stmt->bindValue(':numeroPatente', $patente, PDO::PARAM_STR);
+  $stmt->bindValue(':scadenzaPatente', $Spatente, PDO::PARAM_STR);
   $stmt->execute();
   } catch (PDOException $e)
   {
@@ -34,8 +38,8 @@
 <html>
   <body>
     <h3>
-      Dati Passeggero Confermati
-       <br><input type="button" name="login" onClick="location.href='index.php'" value="Torna al Login">
+      Dati Autista Confermati
+      <br><input type="button" name="login" onClick="location.href='index.php'" value="Torna al Login">
     </h3>
   </body>
 </html>

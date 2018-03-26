@@ -4,7 +4,7 @@
       Modulo di Iscrizione
     </h2>
     
-    <form action="riepilogo.php" method="GET">
+    <form action="riepilogo_autista.php" method="GET">
       <h4>
         Cognome: <input type="text" name="surname"><br>  
         Nome: <input type="text" name="name"><br>
@@ -18,7 +18,11 @@
             <option value="Austria">Austria</option>
             <option value="Germania">Germania</option>
         </select> <br>
-        Patente: Pantente.A <input type="checkbox" name="checkA" value = "A"> Pantente.B  <input type="checkbox" name="checkB" value = "B"><br>
+        Data di Nascita <input type="date" name="data" ><br>
+        Telefono <input type="text" name="telefono"><br>
+        Numero Patente <input type="text" name="patente"><br>
+        Scadenza Patente <input type="date" name="Spatente"><br>
+        Username <input type="text" name="username"><br>
         Email: <input type="email" name="email"><br>
         Password: <input type="password" name="password"><br>
         <input type="button" name="annulla" onClick="location.href='registra.html'" value="x Annulla"><input type="submit" name="conferma" value="v Conferma">

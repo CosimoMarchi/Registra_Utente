@@ -16,5 +16,5 @@ else
   header("location: logout.php");
 }
 ?>
-Loggato
-<input type="button" name="Logout" value="Logout" onClick="location.href='Loguot.php'"</input>
+Passeggero Loggato
+<input type="button" name="Logout" value="Logout" onClick="location.href='logout.php'"</input>
