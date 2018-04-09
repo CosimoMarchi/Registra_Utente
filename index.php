@@ -10,7 +10,7 @@ if(isset($_SESSION['userA']))
 {
 header("location: LoggedA.php");
 }
-if(isset($_POST['loginA']) || isset($_POST['loginP']))
+if(isset($_POST['LoginA']) || isset($_POST['LoginP']))
 {
   $user = $_POST['email'];
   $pass = $_POST['password'];
@@ -19,11 +19,13 @@ if(isset($_POST['loginA']) || isset($_POST['loginP']))
   {
     $messeg = "Username/Password con't be empty";
   } 
-  if(isset($_POST["loginP"]))
+  if(isset($_POST["LoginP"]))
   {
-    $sql = "SELECT * FROM Passeggero WHERE email=? AND password=? ";
+    $sql = "SELECT * FROM Passeggero WHERE email=:email AND password=:pass ";
     $query = $dbh->prepare($sql);
-    $query->execute(array($user,$pass));
+    $query->bindValue(':email', $user, PDO::PARAM_INT);
+    $query->bindValue(':pass', $pass, PDO::PARAM_INT);
+    $query->execute();
     if($query->rowCount() >= 1)
     {
       $_SESSION['userP'] = $user;
@@ -31,11 +33,13 @@ if(isset($_POST['loginA']) || isset($_POST['loginP']))
       header("location: LoggedP.php");
     } 
   }
-  else if(isset($_POST["loginA"]))
+  else if(isset($_POST["LoginA"]))
   {
-     $sql = "SELECT * FROM Autista WHERE email=? AND password=? ";
+     $sql = "SELECT * FROM Autista WHERE email=:email AND password=:pass ";
      $query = $dbh->prepare($sql);
-     $query->execute(array($user,$pass));
+     $query->bindValue(':email', $user, PDO::PARAM_INT);
+     $query->bindValue(':pass', $pass, PDO::PARAM_INT);
+     $query->execute();
      if($query->rowCount() >= 1) 
      {
        $_SESSION['userA'] = $user;
@@ -55,14 +59,14 @@ if(isset($_POST['loginA']) || isset($_POST['loginP']))
       Passeggero<br>
       Email: <input type="email" name="email"><br>
       Password: <input type="password" name="password"><br>
-    <input type="submit" name="loginP" value="LoginP"</input>
+    <input type="submit" name="LoginP" value="LoginP"</input>
     <input type="button" onClick="location.href='registra.html'" value="Registrati"</input>
    </form>
     <form action="" method="POST">
       Autista<br>
       Email: <input type="email" name="email"><br>
       Password: <input type="password" name="password"><br>
-    <input type="submit" name="loginA" value="LoginA"</input>
+    <input type="submit" name="LoginA" value="LoginA"</input>
     <input type="button" onClick="location.href='registra.html'" value="Registrati"</input>
    </form>
  </body>
