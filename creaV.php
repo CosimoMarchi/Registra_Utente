@@ -1,5 +1,5 @@
-<?php session_start()
-  if(isset($_SESSION['userP']))
+<?php session_start();
+  if(isset($_SESSION['userA']))
 {
   if((time() - $_SESSION['time_start_login']) > 3600)
   {
@@ -21,7 +21,7 @@ if(isset($_POST["ok"]))
     $dbh = new PDO('mysql:host=localhost;dbname=marchee', "root", "root");
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $dbh->prepare('
-        INSERT INTO Viaggio ()
+        INSERT INTO Viaggio (animali, bagagli, data, importo, oraArrivo, oraPartenza)
         VALUES (:nome, :cognome, :radio, :select, :username, :data, :telefono, :email, :password, :numeroPatente, :scadenzaPatente);');
     $stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
     $stmt->bindValue(':cognome', $cognome, PDO::PARAM_STR);
@@ -56,6 +56,7 @@ if(isset($_POST["ok"]))
         Luogo Partenza <input type="text" name="luogoP"><br>
         Luogo Arrivo <input type="text" name="luogoA"><br>
         Scadenza Patente <input type="date" name="Spatente"><br>
+        Animali <input type="radio" name="pet" value="si"<input> <input type="radio" name="pet" value="no"<input>
         <input type="submit" name="ok" value="conferma"<input><input type="button" name="nope" value="annulla" onClick="location.href='creaV.php'"<input> 
       </h4>
     </form> 

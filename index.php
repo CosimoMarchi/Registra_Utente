@@ -68,9 +68,9 @@ if(isset($_POST['LoginA']) || isset($_POST['LoginP']))
    </form>
     <form action="" method="POST">
       Autista<br>
-      Email: <input type="email" name="emailA"><br>
-      Password: <input type="password" name="passwordA"><br>
-    <input type="submit" name="LoginA" value="LoginA"</input>
+      Email: <input type="email" name="email"><br>
+      Password: <input type="password" name="password"><br>
+    <input type="submit" name="LoginA" value="Login"</input>
     <input type="button" onClick="location.href='registra.html'" value="Registrati"</input>
    </form>
     
