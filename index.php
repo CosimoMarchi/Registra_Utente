@@ -31,7 +31,11 @@ if(isset($_POST['LoginA']) || isset($_POST['LoginP']))
       $_SESSION['userP'] = $user;
       $_SESSION['time_start_login'] = time();
       header("location: LoggedP.php");
-    } 
+    }
+    else
+    {
+      $messeg="errore";
+    }
   }
   else if(isset($_POST["LoginA"]))
   {
@@ -47,10 +51,10 @@ if(isset($_POST['LoginA']) || isset($_POST['LoginP']))
        header("location: LoggedA.php");
      } 
   }
-  else 
+  else
   {
-        $messeg = "Username/Password is wrong";
-    }
+    $messeg = "Username/Password is wrong";
+  }
 }
 ?>
 <html>
@@ -64,11 +68,12 @@ if(isset($_POST['LoginA']) || isset($_POST['LoginP']))
    </form>
     <form action="" method="POST">
       Autista<br>
-      Email: <input type="email" name="email"><br>
-      Password: <input type="password" name="password"><br>
+      Email: <input type="email" name="emailA"><br>
+      Password: <input type="password" name="passwordA"><br>
     <input type="submit" name="LoginA" value="LoginA"</input>
     <input type="button" onClick="location.href='registra.html'" value="Registrati"</input>
    </form>
+    
  </body>
   </h4>
 </html>
